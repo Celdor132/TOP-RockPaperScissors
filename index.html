@@ -8,3 +8,33 @@
 <body>
     <p>This is a game of Rock, Paper, Scissors played in the console!</p>
 </body>
+
+function updateScores() {
+    if (declareWinner(playerSelection, computerSelection) === 2) {
+        playerScore++;
+        return("You win!");
+    } else if (declareWinner(playerSelection, computerSelection) === 3) {
+        computerScore++;
+        return("You lose!");
+    } else if (declareWinner(playerSelection, computerSelection) === 4) {
+        playerScore++;
+        return("You cheated! But... you won.");
+    }
+    else {
+        console.log("No winners here");
+    }
+}
+updateScores()
+
+
+} else if (declareWinner(playerSelection, computerSelection) === 3) {
+    computerScore++;
+    return("You lose!");
+} else if (declareWinner(playerSelection, computerSelection) === 4) {
+    playerScore++;
+    return("You cheated! But... you won.");
+}
+else {
+    console.log("No winners here");
+}
+}
