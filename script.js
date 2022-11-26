@@ -1,106 +1,122 @@
-console.log("Hello there, welcome to the game!");
-
+console.log("Hello there, welcome to the game! Type 'game()' and hit enter to begin.");
+//variables for global access
 let roundsComplete = 0;
 let playerScore = 0;
 let computerScore = 0;
-let playerSelection = getPlayerChoice();
-let computerSelection = getComputerChoice();
-
-
+let roundWinner = null
 
 function getPlayerChoice() {
     let playerChoice = prompt("Choose rock, paper, or scissors.").toLowerCase();
-    console.log(`The player chose ${playerChoice}`);
     return(playerChoice);
 }
 
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];  //choices for the computer
     let computerChoice = choices[Math.floor(Math.random()* 3)]
-    console.log(`The computer chose ${computerChoice}`);
     return(computerChoice);
 }
 
-function declareWinner(playerSelection, computerSelection) {
+function declareWinner() {
+    let playerSelection = getPlayerChoice();
+    let computerSelection = getComputerChoice();
+    console.log(`The player chose ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}.`);
+    console.log(`The computer chose ${computerSelection.charAt(0).toUpperCase(0) + computerSelection.slice(1)}`);
+        //player and computer choose the same
     if (playerSelection === computerSelection) {
-        return("tie");
+        console.log("Thats a tie.");
+        roundWinner = "tie";
 
         //player chooses rock
-    } else if (playerSelection === "rock") {
-        if (computerSelection === "scissors") {
-            return("win");
+    } else if (playerSelection === ("rock")) {
+        if (computerSelection === ("scissors")) {
+            console.log("Your rock smashed their scissors.");
+            roundWinner = "player";
         }
-        if (computerSelection === "paper") {
-            return("lose");
+        if (computerSelection === ("paper")) {
+            console.log("Your rock was smothered by their paper.");
+            roundWinner = "computer";
         }
 
         //player chooses paper
-    } else if (playerSelection === "paper") {
-        if (computerSelection === "rock") {
-            return("win");
+    } else if (playerSelection === ("paper")) {
+        if (computerSelection === ("rock")) {
+            console.log("Your paper smothered the rock.");
+            roundWinner = "player";
         }
-        if (computerSelection === "scissors") 
-            return("lose");
+        if (computerSelection === ("scissors")) 
+            console.log("Your paper was shredded by their scissors.");
+            roundWinner = "computer";
 
         //player chooses scissors
-    } else if (playerSelection === "scissors") {
-        if (computerSelection === "paper") {
-            return("win");
+    } else if (playerSelection === ("scissors")) {
+        if (computerSelection === ("paper")) {
+            console.log("Your scissors shredded their paper.");
+            roundWinner = "player";
         }
-        if (computerSelection === "rock") {
-            return("lose");
+        if (computerSelection === ("rock")) {
+            console.log("Your scissors were crushed by their rock.");
+            roundWinner = "computer";
         }
 
         //player chooses gun
-    } else if (playerSelection === "gun") {
-        return("cheat");
+    } else if (playerSelection === ("gun")) {
+        console.log("You shot them. That might be considered cheating.");
+        roundWinner = "player-cheat";
+    } else if (playerSelection === ("quit")) {
+        console.log("You just... gave up?");
+        roundWinner = "quit";
 
         //player doesn't choose from the options
     } else {
-        return("Unspecified error. Please figure it out.");
+        console.log(`'${playerSelection}' is not an authorized weapon.`);
+        roundWinner = "no-round";
     }
 }
 
 function updateScore() {
-    if (declareWinner(playerSelection, computerSelection) === ("win")) {
+    if (roundWinner === "player") {
         playerScore++;
         roundsComplete++;
-        return("You win!");
-    } else if (declareWinner(playerSelection, computerSelection) === ("lose")) {
+    } else if (roundWinner === "computer") {
         computerScore++;
         roundsComplete++;
-        return("You lose!");
-    } else if (declareWinner(playerSelection, computerSelection) === ("cheat")) {
+    } else if (roundWinner === "player-cheat") {
         playerScore++;
         roundsComplete++;
-        return("You cheated! But... you won.");
-    } else if (declareWinner(playerSelection, computerSelection) === ("tie")) {
-        console.log("No winners here");
+    } else if (roundWinner === ("quit")) {
+        computerScore++;
+        roundsComplete++;
+    } else if (roundWinner === "tie") {
+        console.log("Try that again...");
+    } else if (roundWinner === "no-round") {
+        console.log("No change to score");
     } else {
-        return(`"${playerSelection}" is not an authorized weapon. Try again!`)
+        console.log("Something went wrong.")
     }
+
 }
-//finish when UI is added
-function checkRounds(roundsComplete) {
+//checks if 5 rounds have been played
+function checkRounds() {
     if (roundsComplete < 5) {
-        alert("Play game() again!");
+        console.log("Play 'game()' again!");
     }
     else if (roundsComplete == 5) {
-        if (playerScore == 5) {
-            return("You won the game bruhv.");
-        } else if (computerScore == 5) {
-            return("The computer ate your soul.");
+        if (playerScore > computerScore) {
+            console.log("You won the game bruhv.");
+       }else if (computerScore > playerScore) {
+            console.log("The computer ate your soul.");
         }
     }
 }
+function resetGame() {
+
+}
+
 
 function game() {
     declareWinner();
-    console.log(updateScore());
-    checkRounds();
+    updateScore();
     console.log(`Your score is ${playerScore} and the enemy's score is ${computerScore}. 
-    You have ${5 - roundsComplete} rounds remaining.`)
-    
+        You have ${5 - roundsComplete} rounds remaining.`);
+    checkRounds();
 }
-
-game()
