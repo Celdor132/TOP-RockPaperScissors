@@ -95,7 +95,7 @@ function updateScore() {
     }
 
 }
-//checks if 5 rounds have been played
+//checks if 5 rounds have been played, calls resetGame when rounds reach 5
 function checkRounds() {
     if (roundsComplete < 5) {
         console.log("Play 'game()' again!");
@@ -111,7 +111,7 @@ function checkRounds() {
     } 
     }
 
-//resets game, if user accepts, to be finished with UI at a later date
+//resets game through page reset or score reset
 function resetGame() {
     let reset = prompt("Reset the game? type 'yes' to reset").toLowerCase();
     if (reset == "yes"){
@@ -127,7 +127,7 @@ function resetGame() {
     }
 }
 
-//calls each game function
+//plays the game
 function game() {
     declareWinner();
     updateScore();
