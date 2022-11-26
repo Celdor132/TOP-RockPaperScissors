@@ -1,22 +1,24 @@
 console.log("Hello there, welcome to the game!");
 
-rounds = 0;
+let roundsComplete = 0;
 let playerScore = 0;
 let computerScore = 0;
-const choices = ["rock", "paper", "scissors"];  //choices for the computer
-const computerSelection = getComputerChoice();
-const playerSelection = getPlayerChoice();
+let playerSelection = getPlayerChoice();
+let computerSelection = getComputerChoice();
 
-function getComputerChoice() {
-    let computerChoice = choices[Math.floor(Math.random()* 3)]
-    console.log(`The computer chose ${computerChoice}`);
-    return(computerChoice);
-}
+
 
 function getPlayerChoice() {
     let playerChoice = prompt("Choose rock, paper, or scissors.").toLowerCase();
     console.log(`The player chose ${playerChoice}`);
     return(playerChoice);
+}
+
+function getComputerChoice() {
+    const choices = ["rock", "paper", "scissors"];  //choices for the computer
+    let computerChoice = choices[Math.floor(Math.random()* 3)]
+    console.log(`The computer chose ${computerChoice}`);
+    return(computerChoice);
 }
 
 function declareWinner(playerSelection, computerSelection) {
@@ -62,15 +64,15 @@ function declareWinner(playerSelection, computerSelection) {
 function updateScore() {
     if (declareWinner(playerSelection, computerSelection) === ("win")) {
         playerScore++;
-        rounds++;
+        roundsComplete++;
         return("You win!");
     } else if (declareWinner(playerSelection, computerSelection) === ("lose")) {
         computerScore++;
-        rounds++;
+        roundsComplete++;
         return("You lose!");
     } else if (declareWinner(playerSelection, computerSelection) === ("cheat")) {
         playerScore++;
-        rounds++;
+        roundsComplete++;
         return("You cheated! But... you won.");
     } else if (declareWinner(playerSelection, computerSelection) === ("tie")) {
         console.log("No winners here");
@@ -78,20 +80,27 @@ function updateScore() {
         return(`"${playerSelection}" is not an authorized weapon. Try again!`)
     }
 }
-
-function checkRounds(rounds) {
-    if (rounds < 5) {
-
+//finish when UI is added
+function checkRounds(roundsComplete) {
+    if (roundsComplete < 5) {
+        alert("Play game() again!");
+    }
+    else if (roundsComplete == 5) {
+        if (playerScore == 5) {
+            return("You won the game bruhv.");
+        } else if (computerScore == 5) {
+            return("The computer ate your soul.");
+        }
     }
 }
 
 function game() {
-    declareWinner(playerSelection, computerSelection);
+    declareWinner();
     console.log(updateScore());
+    checkRounds();
     console.log(`Your score is ${playerScore} and the enemy's score is ${computerScore}. 
-    You have ${5 - rounds} rounds remaining.`)
+    You have ${5 - roundsComplete} rounds remaining.`)
     
 }
 
-game();
-
+game()
