@@ -38,3 +38,16 @@ else {
     console.log("No winners here");
 }
 }
+
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+    declareWinner(playerSelection, computerSelection);
+    console.log(`You have won ${playerScore} times and you have lost ${computerScore} times.`)
+    }
+}
+const playerSelection = prompt("Choose rock, paper, or scissors.").toLowerCase();
+const computerSelection = getComputerChoice();
+
+console.log(updateScore());
+//game();
