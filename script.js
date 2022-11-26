@@ -100,22 +100,30 @@ function checkRounds() {
     if (roundsComplete < 5) {
         console.log("Play 'game()' again!");
     }
-    else if (roundsComplete == 5) {
+    else if (roundsComplete === 5) {
         if (playerScore > computerScore) {
             console.log("You won the game bruhv.");
+            resetGame();
        }else if (computerScore > playerScore) {
             console.log("The computer ate your soul.");
+            resetGame();
         }
+    } 
     }
-}
+
 //resets game, if user accepts, to be finished with UI at a later date
 function resetGame() {
     let reset = prompt("Reset the game? type 'yes' to reset").toLowerCase();
-    
-    if (reset = 'yes') {
-      alert("This page will be reset in 5 seconds")
-    }else {
-      alert("You have canceled the reset!");
+    if (reset == "yes"){
+      alert("This page will be reset in 5 seconds");
+      setTimeout(function(){
+        window.location.reload();
+     }, 5000);
+    } else {
+      alert("You have canceled the page reset! Resetting rounds and scores.");
+      roundsComplete = 0;
+      playerScore = 0
+      computerScore = 0
     }
 }
 
