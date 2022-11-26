@@ -72,7 +72,7 @@ function declareWinner() {
         roundWinner = "no-round";
     }
 }
-
+//updates score based on declareWinner
 function updateScore() {
     if (roundWinner === "player") {
         playerScore++;
@@ -108,11 +108,18 @@ function checkRounds() {
         }
     }
 }
+//resets game, if user accepts, to be finished with UI at a later date
 function resetGame() {
-
+    let reset = prompt("Reset the game? type 'yes' to reset").toLowerCase();
+    
+    if (reset = 'yes') {
+      alert("This page will be reset in 5 seconds")
+    }else {
+      alert("You have canceled the reset!");
+    }
 }
 
-
+//calls each game function
 function game() {
     declareWinner();
     updateScore();
