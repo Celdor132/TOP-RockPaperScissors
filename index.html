@@ -3,51 +3,13 @@
 <head>
     <meta charset="utf-8">
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css"></style>
+    <title>Rock, Paper, Scissors</title>
+
 </head>
 
 <body>
-    <p>This is a game of Rock, Paper, Scissors played in the console!</p>
+    <h1 class="welcome">This is a game of Rock, Paper, Scissors played in the console! Hit 'F12' to 
+        open the console.</h1>
+        
 </body>
-
-function updateScores() {
-    if (declareWinner(playerSelection, computerSelection) === 2) {
-        playerScore++;
-        return("You win!");
-    } else if (declareWinner(playerSelection, computerSelection) === 3) {
-        computerScore++;
-        return("You lose!");
-    } else if (declareWinner(playerSelection, computerSelection) === 4) {
-        playerScore++;
-        return("You cheated! But... you won.");
-    }
-    else {
-        console.log("No winners here");
-    }
-}
-updateScores()
-
-
-} else if (declareWinner(playerSelection, computerSelection) === 3) {
-    computerScore++;
-    return("You lose!");
-} else if (declareWinner(playerSelection, computerSelection) === 4) {
-    playerScore++;
-    return("You cheated! But... you won.");
-}
-else {
-    console.log("No winners here");
-}
-}
-
-
-function game() {
-    for (let i = 0; i < 5; i++) {
-    declareWinner(playerSelection, computerSelection);
-    console.log(`You have won ${playerScore} times and you have lost ${computerScore} times.`)
-    }
-}
-const playerSelection = prompt("Choose rock, paper, or scissors.").toLowerCase();
-const computerSelection = getComputerChoice();
-
-console.log(updateScore());
-//game();
