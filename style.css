@@ -3,4 +3,6 @@
 }
 .welcome {
     text-align: center;
+    background-color: brown;
+    text-decoration: dashed;
 }
